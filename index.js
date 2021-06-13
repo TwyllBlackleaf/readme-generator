@@ -60,6 +60,63 @@ const questions = [
                 return false;
             }
         }
+    },
+    {
+        type: "input",
+        name: "installation",
+        message: "Please provide instructions on how to install your project."
+    },
+    {
+        type: "confirm",
+        name: "confirmInstallImage",
+        message: "Would you like to include an image showing how to install your project?",
+        default: false
+    },
+    {
+        type: "input",
+        name: "installImage",
+        message: "Please provide a file path for an image showing how to install your project."
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "Please describe how to use your project. (required)",
+        validate: usageInput => {
+            if (usageInput) {
+                return true;
+            } else {
+                console.log("Please provide usage instructions!");
+                return false;
+            }
+        }
+    },
+    {
+        type: "confirm",
+        name: "confirmUsageImage",
+        message: "Would you like to include an image showing how to use your project?",
+        default: false
+    },
+    {
+        type: "input",
+        name: "usageImage",
+        message: "Please provide a file path for an image showing how to use your project.",
+        when: ({ confirmUsageImage }) => {
+            if (confirmUsageImage) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "contributing",
+        message: "Please describe the guidelines for contributing to your project."
+    },
+    {
+        type: "input",
+        name: "testing",
+        message: "Please provide any tests you have created for your project."
     }
 ];
 
