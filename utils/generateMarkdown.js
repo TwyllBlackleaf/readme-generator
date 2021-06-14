@@ -1,3 +1,5 @@
+const addScreenshot = require("./add-screenshots.js");
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) { }
@@ -11,7 +13,6 @@ function renderLicenseLink(license) { }
 function renderLicenseSection(license) { }
 
 // Generate a Table of Contents based on which optional sections are included
-
 const tableOfContents = data => {
     let installationLink = "";
     let contributingLink = "";
@@ -50,9 +51,21 @@ ${data.installation}`
     }
 }
 // Screenshot for "how to use" section, if the user included one
+const addUsageImage = data => {
+    if (data.usageImage) {
+        addScreenshot(data.usageImage, "how-to-use.png");
+
+    return `
+
+![A screenshot showing how to use the app]("./readme-assets/how-to-use.png")
+`;
+    } else {
+        return "";
+    }
+    
+};
 
 // Contribution guidelines, if the user included them
-
 const contributingSection = data => {
     if (data.contributing) {
         return `
@@ -85,7 +98,7 @@ ${data.projectDesc}
 ${tableOfContents(data)}
 ${installationSection(data)}
 
-## Usage
+## Usage ${addUsageImage(data)}
 
 ${data.usage}
 

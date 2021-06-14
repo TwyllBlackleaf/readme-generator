@@ -71,7 +71,14 @@ const questions = [
         type: "confirm",
         name: "confirmInstallImage",
         message: "Would you like to include an image showing how to install your project?",
-        default: false
+        default: false,
+        when: ({ installation }) => {
+            if (installation) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     },
     {
         type: "input",
@@ -125,6 +132,12 @@ const questions = [
         type: "input",
         name: "testing",
         message: "Please provide any tests you have created for your project."
+    },
+    {
+        type: "list",
+        name: "license",
+        message: "Which license is your project licensed under?",
+        choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense"]
     }
 ];
 
