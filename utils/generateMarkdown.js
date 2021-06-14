@@ -18,37 +18,81 @@ const tableOfContents = data => {
     let testingLink = "";
     if (data.installation) {
         installationLink = `- [Installation](#Installation)
-    `;
+`;
     }
     if (data.contributing) {
         contributingLink = `- [Contributing](#Contributing)
-    `;
+`;
     }
     if (data.testing) {
         testingLink = `- [Testing](#Testing)
-    `;
+`;
     }
 
+    // Formatting looks strange in order to maintain tabs and line breaks in finished markdown
     return `
-    - [Description](#Description) 
-    ${installationLink}- [Usage](#Usage)
-    - [License](#License) 
-    ${contributingLink}${testingLink}- [Questions](#Questions)
-    `;
+- [Description](#Description) 
+${installationLink}- [Usage](#Usage)
+- [License](#License) 
+${contributingLink}${testingLink}- [Questions](#Questions)
+`;
 }
 
 // Installation instructions, if the user included them
-
+const installationSection = data => {
+    if (data.installation) {
+        return `
+## Installation
+        
+${data.installation}`
+    } else {
+        return "";
+    }
+}
 // Screenshot for "how to use" section, if the user included one
 
 // Contribution guidelines, if the user included them
 
+const contributingSection = data => {
+    if (data.contributing) {
+        return `
+## Contributing
+        
+${data.contributing}`
+    } else {
+        return "";
+    }
+}
+
 // Testing section, if the user included one
+const testingSection = data => {
+    if (data.testing) {
+        return `
+## Testing
+        
+${data.testing}`
+    }
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.projectName}
-    ${tableOfContents(data)}
+
+## Description
+    
+${data.projectDesc}
+
+${tableOfContents(data)}
+${installationSection(data)}
+
+## Usage
+
+${data.usage}
+
+## License
+
+${contributingSection(data)}
+${testingSection(data)}
 `;
 }
 
