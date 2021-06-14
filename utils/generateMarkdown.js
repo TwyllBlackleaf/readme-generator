@@ -13,7 +13,28 @@ function renderLicenseSection(license) { }
 // Generate a Table of Contents based on which optional sections are included
 
 const tableOfContents = data => {
+    let installationLink = "";
+    let contributingLink = "";
+    let testingLink = "";
+    if (data.installation) {
+        installationLink = `- [Installation](#Installation)
+    `;
+    }
+    if (data.contributing) {
+        contributingLink = `- [Contributing](#Contributing)
+    `;
+    }
+    if (data.testing) {
+        testingLink = `- [Testing](#Testing)
+    `;
+    }
 
+    return `
+    - [Description](#Description) 
+    ${installationLink}- [Usage](#Usage)
+    - [License](#License) 
+    ${contributingLink}${testingLink}- [Questions](#Questions)
+    `;
 }
 
 // Installation instructions, if the user included them
@@ -26,8 +47,8 @@ const tableOfContents = data => {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    return `# ${data.title}
-
+    return `# ${data.projectName}
+    ${tableOfContents(data)}
 `;
 }
 
