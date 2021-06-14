@@ -75,7 +75,14 @@ const questions = [
     {
         type: "input",
         name: "installImage",
-        message: "Please provide a file path for an image showing how to install your project."
+        message: "Please provide a file path for an image showing how to install your project.",
+        when: ({ confirmInstallImage }) => {
+            if (confirmInstallImage) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     },
     {
         type: "input",
@@ -124,7 +131,9 @@ const questions = [
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions);
+}
 
 // Function call to initialize app
 init();

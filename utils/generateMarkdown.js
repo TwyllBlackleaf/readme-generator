@@ -10,6 +10,20 @@ function renderLicenseLink(license) { }
 // If there is no license, return an empty string
 function renderLicenseSection(license) { }
 
+// Generate a Table of Contents based on which optional sections are included
+
+const tableOfContents = data => {
+
+}
+
+// Installation instructions, if the user included them
+
+// Screenshot for "how to use" section, if the user included one
+
+// Contribution guidelines, if the user included them
+
+// Testing section, if the user included one
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.title}
