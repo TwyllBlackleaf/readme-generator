@@ -156,6 +156,30 @@ const questions = [
         name: "license",
         message: "Which license is your project licensed under? (optional)",
         choices: ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "Other", "None"]
+    },
+    {
+        type: "input",
+        name: "otherLicenseName",
+        message: "Please enter the name of the license your project uses.",
+        when: ({ license }) => {
+            if (license === "Other") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "otherLicenseLink",
+        message: "Please provide a link to the license your project uses.",
+        when: ({ license }) => {
+            if (license === "Other") {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ];
 

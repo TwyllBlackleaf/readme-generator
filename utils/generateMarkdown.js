@@ -2,15 +2,21 @@ const addScreenshot = require("./add-screenshots.js");
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) { }
+function renderLicenseBadge(license) {
+
+}
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) { }
+function renderLicenseLink(license) {
+
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) { }
+function renderLicenseSection(license) {
+
+}
 
 // Generate a Table of Contents based on which optional sections are included
 const tableOfContents = data => {
@@ -29,14 +35,17 @@ const tableOfContents = data => {
         testingLink = `- [Testing](#Testing)
 `;
     }
+    if (data.license && data.license != "None") {
+        licenseLink = `- [License](#License)
+`;
+    }
 
     // Formatting looks strange in order to maintain tabs and line breaks in finished markdown
     return `
 - [Description](#Description) 
 ${installationLink}- [Usage](#Usage)
-- [License](#License) 
 ${contributingLink}${testingLink}- [Questions](#Questions)
-`;
+${licenseLink}`;
 }
 
 // Installation instructions, if the user included them
@@ -87,25 +96,42 @@ ${data.testing}`
     }
 }
 
+// License section, if the user included one
+const licenseSection = data => {
+    if (data.license && data.license != "None") {
+        if (data.license = "Other" && data.otherLicenseName) {
+            return `
+## License
+
+This project is licensed under ${data.otherLicenseName}`
+        } else {
+            return `
+## License
+
+This project is licensed under ${data.license}`
+        }
+    }
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.projectName}
+
+${tableOfContents(data)}
 
 ## Description
     
 ${data.projectDesc}
 
-${tableOfContents(data)}
 ${installationSection(data)}
 
 ## Usage ${addUsageImage(data)}
 
 ${data.usage}
 
-## License
-
 ${contributingSection(data)}
 ${testingSection(data)}
+${licenseSection(data)}
 `;
 }
 
