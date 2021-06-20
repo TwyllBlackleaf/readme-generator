@@ -4,7 +4,7 @@ const addScreenshot = (filePath, newFileName) => {
     // Create the readme-assets folder
     fs.mkdir("./dist/readme-assets", err => {
         if (err) {
-            // Check if the folder already exists, and if so, return out of the function
+            // Check if the error is because the folder already exists, and if so, return out of the function
             if (err.code === "EEXIST") {
                 return;
             }
