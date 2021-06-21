@@ -2,7 +2,7 @@
         
 ![A screenshot showing the app in action](./readme-assets/main-screenshot.png) 
 
-[![License: MIT License](https://img.shields.io/badge/license-MIT License-green)](https://choosealicense.com/licenses/mit/)
+![License: MIT License](https://img.shields.io/badge/license-MIT_License-green)
 
 
 - [Description](#Description) 
