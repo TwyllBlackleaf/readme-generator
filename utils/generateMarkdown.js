@@ -168,6 +168,8 @@ const testingSection = data => {
 ## Testing
         
 ${data.testing}`
+    } else {
+        return "";
     }
 }
 

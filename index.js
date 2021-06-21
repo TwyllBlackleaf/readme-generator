@@ -65,13 +65,13 @@ const questions = [
     {
         type: "confirm",
         name: "confirmScreenshot",
-        message: "Would you like to add a screenshot showing your app in action? (optional)",
+        message: "Would you like to add a PNG image showing your app in action? (optional)",
         default: true   
     },
     {
         type: "input",
         name: "mainScreenshot",
-        message: "Please provide a file path for a screenshot of your project in action.",
+        message: "Please provide a file path for a screenshot of your project in action. (please use a PNG)",
         when: ({ confirmScreenshot }) => {
             if (confirmScreenshot) {
                 return true;
@@ -88,7 +88,7 @@ const questions = [
     {
         type: "confirm",
         name: "confirmInstallImage",
-        message: "Would you like to include an image showing how to install your project? (optional)",
+        message: "Would you like to include a PNG image showing how to install your project? (optional)",
         default: false,
         when: ({ installation }) => {
             if (installation) {
@@ -101,7 +101,7 @@ const questions = [
     {
         type: "input",
         name: "installImage",
-        message: "Please provide a file path for an image showing how to install your project.",
+        message: "Please provide a file path for an image showing how to install your project. (please use a PNG)",
         when: ({ confirmInstallImage }) => {
             if (confirmInstallImage) {
                 return true;
@@ -126,13 +126,13 @@ const questions = [
     {
         type: "confirm",
         name: "confirmUsageImage",
-        message: "Would you like to include an image showing how to use your project? (optional)",
+        message: "Would you like to include a PNG image showing how to use your project? (optional)",
         default: false
     },
     {
         type: "input",
         name: "usageImage",
-        message: "Please provide a file path for an image showing how to use your project.",
+        message: "Please provide a file path for an image showing how to use your project. (please use a PNG)",
         when: ({ confirmUsageImage }) => {
             if (confirmUsageImage) {
                 return true;
