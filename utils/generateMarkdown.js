@@ -1,6 +1,6 @@
 const addScreenshot = require("./add-screenshots.js");
 
-// TODO: Create a function that returns a license badge based on which license is passed in
+// A function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(data) {
     if (data.license) {
@@ -16,7 +16,7 @@ function renderLicenseBadge(data) {
     }
 }
 
-// TODO: Create a function that returns the license link
+// A function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(data) {
     let licenseLink = "";
@@ -157,7 +157,7 @@ const questionsSection = data => {
     const renderEmailAddress = email => {
         if (email) {
             return `
-Email: ${email}`;
+- Email: ${email}`;
         } else {
             return "";
         }
@@ -168,7 +168,7 @@ Email: ${email}`;
 
 If you have questions about the project, contact ${data.userName}.
 
-GitHub: https://github.com/${data.githubName} ${renderEmailAddress(data.emailAddress)}`;
+- GitHub: https://github.com/${data.githubName} ${renderEmailAddress(data.emailAddress)}`;
 }
 
 // TODO: Create a function to generate markdown for README
