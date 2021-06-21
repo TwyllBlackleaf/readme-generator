@@ -26,9 +26,9 @@ Clone or download from GitHub. Make sure you have node.js and npm installed. Run
 
 ![A screenshot showing how to use the app](./readme-assets/how-to-use.png)
 
-![An animated gif showing how to use the app](./readme-assets/animated-how-to.gif)
+Run the app by using “node index” from the main folder, then just follow the prompts. The output can be found in the dist folder, and images will be in /readme-assets within that folder. You can copy the markdown file and the assets folder straight into your project, but if you want to make sure not to break the image links, please keep the file and the assets folder within the same folder.
 
-Run the app by using “node index” from the main folder, then just follow the prompts. The output can be found in the dist folder, and images will be in /readme-assets within that folder. You can copy the markdown file and the assets folder straight into your project, but if you want to make sure not to break the image links, please keep the file and the assets folder within the same folder.   
+For a video tutorial, go to this link: https://drive.google.com/file/d/1tyFwtyzpcIr0q__rB6m1u1Y1WnzX3-_Q/view
 
 ## Questions
 
