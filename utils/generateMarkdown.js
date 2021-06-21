@@ -2,20 +2,59 @@ const addScreenshot = require("./add-screenshots.js");
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {
-
+function renderLicenseBadge(data) {
+    if (data.license) {
+        if (data.license === "Other" && data.otherLicenseName) {
+            return `[![License: ${data.otherLicenseName}](https://img.shields.io/badge/license-${data.otherLicenseName}-green)](${renderLicenseLink(data)})`;
+        } else if (data.license != "None") {
+            return `[![License: ${data.license}](https://img.shields.io/badge/license-${data.license}-green)](${renderLicenseLink(data)})`;
+        } else {
+            return "";
+        }
+    } else {
+        return "";
+    }
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {
+function renderLicenseLink(data) {
+    let licenseLink = "";
 
-}
+    if (data.license) {
+        if (data.license === "Other" && data.otherLicenseLink) {
+            licenseLink = data.otherLicenseLink;
+        } else if (data.license != "None") {
+            switch (data.license) {
+                case "GNU AGPLv3":
+                    licenseLink = "https://choosealicense.com/licenses/agpl-3.0/";
+                    break;
+                case "GNU GPLv3":
+                    licenseLink = "https://choosealicense.com/licenses/gpl-3.0/";
+                    break;
+                case "GNU LGPLv3":
+                    licenseLink = "https://choosealicense.com/licenses/lgpl-3.0/";
+                    break;
+                case "Mozilla Public License 2.0":
+                    licenseLink = "https://choosealicense.com/licenses/mpl-2.0/";
+                    break;
+                case "Apache License 2.0":
+                    licenseLink = "https://choosealicense.com/licenses/apache-2.0/";
+                    break;
+                case "MIT License":
+                    licenseLink = "https://choosealicense.com/licenses/mit/";
+                    break;
+                case "Boost Software License 1.0":
+                    licenseLink = "https://choosealicense.com/licenses/bsl-1.0/";
+                    break;
+                case "The Unlicense":
+                    licenseLink = "https://choosealicense.com/licenses/unlicense/";
+                    break;
+            }
+        } 
+    }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {
-
+    return licenseLink;
 }
 
 // Generate a Table of Contents based on which optional sections are included
@@ -99,7 +138,7 @@ ${data.testing}`
 // License section, if the user included one
 const licenseSection = data => {
     if (data.license && data.license != "None") {
-        if (data.license = "Other" && data.otherLicenseName) {
+        if (data.license === "Other" && data.otherLicenseName) {
             return `
 ## License
 
@@ -116,6 +155,7 @@ This project is licensed under ${data.license}`
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.projectName}
+${renderLicenseBadge(data)}
 
 ${tableOfContents(data)}
 
