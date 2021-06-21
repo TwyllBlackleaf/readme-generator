@@ -152,6 +152,25 @@ This project is licensed under [${data.license}](${renderLicenseLink(data)})`;
     }
 }
 
+// Questions section
+const questionsSection = data => {
+    const renderEmailAddress = email => {
+        if (email) {
+            return `
+Email: ${email}`;
+        } else {
+            return "";
+        }
+    }
+
+    return `
+## Questions
+
+If you have questions about the project, contact ${data.userName}.
+
+GitHub: https://github.com/${data.githubName} ${renderEmailAddress(data.emailAddress)}`;
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
     return `# ${data.projectName}
@@ -171,6 +190,7 @@ ${data.usage}
 
 ${contributingSection(data)}
 ${testingSection(data)}
+${questionsSection(data)}
 ${licenseSection(data)}
 `;
 }
