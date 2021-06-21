@@ -7,11 +7,11 @@ function renderLicenseBadge(data) {
         if (data.license === "Other" && data.otherLicenseName) {
             return `
 
-[![License: ${data.otherLicenseName}](https://img.shields.io/badge/license-${data.otherLicenseName}-green)](${renderLicenseLink(data)})`;
+![License: ${data.otherLicenseName}](https://img.shields.io/badge/license-${data.otherLicenseName.replace(" ", "_")}-green)`;
         } else if (data.license != "None") {
             return `
 
-[![License: ${data.license}](https://img.shields.io/badge/license-${data.license}-green)](${renderLicenseLink(data)})`;
+![License: ${data.license}](https://img.shields.io/badge/license-${data.license.replace(" ", "_")}-green)`;
         } else {
             return "";
         }
