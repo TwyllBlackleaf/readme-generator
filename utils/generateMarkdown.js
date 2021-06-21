@@ -142,12 +142,12 @@ const licenseSection = data => {
             return `
 ## License
 
-This project is licensed under ${data.otherLicenseName}`
+This project is licensed under [${data.otherLicenseName}](${renderLicenseLink(data)})`;
         } else {
             return `
 ## License
 
-This project is licensed under ${data.license}`
+This project is licensed under [${data.license}](${renderLicenseLink(data)})`;
         }
     }
 }
