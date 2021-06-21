@@ -5,9 +5,13 @@ const addScreenshot = require("./add-screenshots.js");
 function renderLicenseBadge(data) {
     if (data.license) {
         if (data.license === "Other" && data.otherLicenseName) {
-            return `[![License: ${data.otherLicenseName}](https://img.shields.io/badge/license-${data.otherLicenseName}-green)](${renderLicenseLink(data)})`;
+            return `
+
+[![License: ${data.otherLicenseName}](https://img.shields.io/badge/license-${data.otherLicenseName}-green)](${renderLicenseLink(data)})`;
         } else if (data.license != "None") {
-            return `[![License: ${data.license}](https://img.shields.io/badge/license-${data.license}-green)](${renderLicenseLink(data)})`;
+            return `
+
+[![License: ${data.license}](https://img.shields.io/badge/license-${data.license}-green)](${renderLicenseLink(data)})`;
         } else {
             return "";
         }
@@ -57,11 +61,25 @@ function renderLicenseLink(data) {
     return licenseLink;
 }
 
+// Insert the main screenshot showing app functionality, if there is one
+const addMainImage = data => {
+    if (data.mainScreenshot) {
+        addScreenshot(data.mainScreenshot, "main-screenshot.png");
+
+        return `
+        
+![A screenshot showing the app in action](./readme-assets/main-screenshot.png)`;
+    } else {
+        return "";
+    }
+}
+
 // Generate a Table of Contents based on which optional sections are included
 const tableOfContents = data => {
     let installationLink = "";
     let contributingLink = "";
     let testingLink = "";
+    let licenseLink = "";
     if (data.installation) {
         installationLink = `- [Installation](#Installation)
 `;
@@ -87,17 +105,33 @@ ${contributingLink}${testingLink}- [Questions](#Questions)
 ${licenseLink}`;
 }
 
+// Screenshot for installation section, if the user included it 
+const addInstallImage = data => {
+    if (data.installImage) {
+        addScreenshot(data.installImage, "how-to-install.png");
+
+        return `
+        
+![A screenshot showing how to install the app](./readme-assets/how-to-install.png)`;
+    } else {
+        return "";
+    }
+}
+
 // Installation instructions, if the user included them
 const installationSection = data => {
     if (data.installation) {
         return `
-## Installation
+
+## Installation ${addInstallImage(data)}
         
 ${data.installation}`
     } else {
         return "";
     }
 }
+
+
 // Screenshot for "how to use" section, if the user included one
 const addUsageImage = data => {
     if (data.usageImage) {
@@ -105,7 +139,7 @@ const addUsageImage = data => {
 
     return `
 
-![A screenshot showing how to use the app]("./readme-assets/how-to-use.png")
+![A screenshot showing how to use the app](./readme-assets/how-to-use.png)
 `;
     } else {
         return "";
@@ -117,6 +151,7 @@ const addUsageImage = data => {
 const contributingSection = data => {
     if (data.contributing) {
         return `
+
 ## Contributing
         
 ${data.contributing}`
@@ -129,6 +164,7 @@ ${data.contributing}`
 const testingSection = data => {
     if (data.testing) {
         return `
+
 ## Testing
         
 ${data.testing}`
@@ -140,11 +176,13 @@ const licenseSection = data => {
     if (data.license && data.license != "None") {
         if (data.license === "Other" && data.otherLicenseName) {
             return `
+
 ## License
 
 This project is licensed under [${data.otherLicenseName}](${renderLicenseLink(data)})`;
         } else {
             return `
+
 ## License
 
 This project is licensed under [${data.license}](${renderLicenseLink(data)})`;
@@ -164,6 +202,7 @@ const questionsSection = data => {
     }
 
     return `
+
 ## Questions
 
 If you have questions about the project, contact ${data.userName}.
@@ -173,25 +212,17 @@ If you have questions about the project, contact ${data.userName}.
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-    return `# ${data.projectName}
-${renderLicenseBadge(data)}
+    return `# ${data.projectName} ${addMainImage(data)} ${renderLicenseBadge(data)}
 
 ${tableOfContents(data)}
 
 ## Description
     
-${data.projectDesc}
-
-${installationSection(data)}
+${data.projectDesc} ${installationSection(data)}
 
 ## Usage ${addUsageImage(data)}
 
-${data.usage}
-
-${contributingSection(data)}
-${testingSection(data)}
-${questionsSection(data)}
-${licenseSection(data)}
+${data.usage} ${contributingSection(data)} ${testingSection(data)} ${questionsSection(data)} ${licenseSection(data)}
 `;
 }
 
